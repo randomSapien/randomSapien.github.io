@@ -100,6 +100,104 @@
 	
 		</div>		
 
+
+		<h3 class="heading"> Natas 4 <a href="http://natas4.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+<p> Username : nata4 <br></p>
+		<img src="images/natas4.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>This one is pretty obvious. You have to visit the page as if you are from natas5. Burpsuite is a tool that can help you here.  </p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>Intercept the traffic and add a request header</p>
+		</div>
+
+		<button class="accordion">Solution </button>
+		<div class="panel">
+		<p>
+				  Intercept the traffic using burpsuite proxy and add Referer header in the request.<br>			  
+				  The referer should be "http://natas5.natas.labs.overthewire.org/"."<br><br>
+				  <img src="images/natas4c.png" width="60%" height="auto"><br>
+				  <img src="images/natas4b.png" width="60%" height="auto"><br><br>
+					Password : iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq </p>
+		</div>	
+
+
+
+<h3 class="heading"> Natas 5 <a href="http://natas5.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata5 <br></p>
+		<img src="images/natas5.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>The request is the key. Burpsuite is a tool that can help you here.  </p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>Pay attention to the values in the request.</p>
+		</div>
+
+		<button class="accordion">Solution </button>
+		<div class="panel">
+		<p>
+				  Intercept the traffic using burpsuite proxy.<br>Change the value of  loggedin value in the request from 0 to 1.<br><br>
+				  <img src="images/natas5b.png" width="60%" height="auto"><br>
+				  <img src="images/natas5c.png" width="60%" height="auto"><br><br>
+					Password : aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1 </p>
+		</div>			
+
+
+<h3 class="heading"> Natas 6 <a href="http://natas6.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata6 <br></p>
+		<img src="images/natas6.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>The source code has something really interesting for us.</p>
+		<img src="images/natas6b.png" width="60%" height="auto">
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>You are looking for a file.</p>
+		</div>
+
+		<button class="accordion">Solution </button>
+		<div class="panel">
+		<p>
+				  The secret is stored in the includes/secret.inc file.<br>
+				  Navigate to http://natas6.natas.labs.overthewire.org/includes/secret.inc and view its source.
+				  <br><br><img src="images/natas6c.png" width="60%" height="auto"><br><br>
+				  It has the secret stored in it.Use this to find the password to the next level.
+				  <br><br><img src="images/natas6d.png" width="60%" height="auto"><br><br>
+					Password : 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9  </p>
+		</div>		
+
+<h3 class="heading"> Natas 7 <a href="http://natas7.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata7 <br></p>
+		<img src="images/natas7.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>Notice the url while accessing the home and about pages.</p>
+		<img src="images/natas7c.png" width="60%" height="auto">
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>Directory Traversal. In the page source, they give us a hint saying that the password is stored in /etc/natas_webpass/natas8.</p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		<p>You have to traverse to the /etc/natas_webpass/natas8 page using<br> 
+				<p class="code">http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8
+				</p><br><br>
+				  <img src="images/natas7c.png" width="60%" height="auto"><br><br>
+				  Password : DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe </p>
+
+		</div>		
+
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
