@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+
+	<title></title>
+</head>
+<body>
+		<br><br>
+		<a class="button bkbtn" href="../projects.html"> Back </a>
+		<h3>EXPLOIT EDUCATION - NEBULA <a href="https://exploit.education/nebula/"> <img src="../images/link.svg"> </a></h3> 
+		<p>Nebula covers a variety of simple and intermediate challenges that cover Linux privilege  escalation, common scripting <br>
+		language issues, and file system race conditions.Nebula is an ideal place to get started for people new to Linux <br> 
+		exploitation.Hints will be provided in this walkthrough to give a chance for your wheels to spin.<br>
+		Try your best to solve each level on your own before looking at the solution. Goodluck!!! </p><br>
+
+		<h3 class="heading"> Natas 0 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level01 <br> Password : level01 </p>
+			
+			<button class="accordion">Hint 01</button>
+			<div class="panel">
+			<p>Search for commands that can search for files based on its permissions and user.</p>
+			</div>
+			<button class="accordion">Hint 02</button>
+			<div class="panel">
+			<p>Use the find command.</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>
+			We can use the find command to search for this file. <br>
+			<p class="code">find /  -perm -u=s -user "flag00" 2> /dev/null</p> <br>
+			this command will search the direcrtory / (which means it will search for the file everywhere.)<br>
+			<b>-perm</b> option lets us search for a file with matching permissions. <br>
+			;eg.-perm u=r will search for files that exacly match the specified permission.(files with read permissions only for the user.).That is why we specified -u=s for permission so that the command searches for files that also has the suid bit set and not for files that has only the suid bit set. <br>
+			<b>-user</b> searches for files that are owned by the user flag00.<br>
+			<b>2> /dev/null</b> redirects the error (stderr) to /dev/null, which is a file that accepts and discards anything and everything.(its morelike a small blackhole inside linux.)<br>
+			We get two files when we run the find command. <br>
+			Now we execute the file </p> <p class="code">/bin/.../flag00</p>
+			<img src="images/nebula/0.png" height="auto" width="50%">		
+			</div>
+
+
+
+
+			
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+<br><br><br>
+
+</body>
+</html>
