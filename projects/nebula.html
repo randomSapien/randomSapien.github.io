@@ -16,7 +16,8 @@
 		Try your best to solve each level on your own before looking at the solution. Goodluck!!! </p><br>
 
 		<h3 class="heading"> level00 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
-			<p> Username : level00 <br> Password : level00 </p>
+			<p> Username : level01 <br> Password : level01 </p>
+			<p>This level requires you to find a Set User ID program that will run as the “flag00” account. You could also find this by carefully looking in top level directories in / for suspicious looking directories.<br>Files for this level can be found in /home/flag00.</p>
 			
 			<button class="accordion">Hint01</button>
 			<div class="panel">
@@ -45,7 +46,43 @@
 
 <h3 class="heading"> level01 <a href="https://exploit.education/nebula/level-01/" > <img src="../images/link.svg"> </a></h3>
 		<p> Username : level01 <br> Password : level01 </p>
+		<p>There is a vulnerability in the below program that allows arbitrary programs to be executed, can you find it?<br>
+		Files for this level can be found in /home/flag01.</p>
+<div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdlib.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/types.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>envp)
+{
+  gid_t gid;
+  uid_t uid;
+  gid <span style=color:#f92672>=</span> getegid();
+  uid <span style=color:#f92672>=</span> geteuid();
 
+  setresgid(gid, gid, gid);
+  setresuid(uid, uid, uid);
+
+  system(<span style=color:#e6db74>&#34;/usr/bin/env echo and now what?&#34;</span>);
+}</code></pre>
+
+<button class="accordion">Explanation </button>
+		<div class="panel">
+		 <pre >
+
+<p class="code">char *buffer;<br>gid = getegid();<br>uid = geteuid();</p>
+The group id , user id of the current user is copied into the gid and uid using the getegid() and geteuid() functions.
+(Get Effective group id and Get Effective User id functions)
+<p class="code">gid = getegid();<br>uid = geteuid();</p>
+Then the setresgid, setresuid functions are used to set gid and uid of the current user.
+setresgid - set real, effective and saved user or group ID
+setresuid - set real, effective and saved user or user ID
+<p class="code">system("/usr/bin/env echo and now what?");
+</p> 
+Echo command is used to print "and now what?"
+</pre>
+		</div>
 		
 		<button class="accordion">Hint01 </button>
 		<div class="panel">
@@ -54,7 +91,7 @@
 
 		<button class="accordion">Hint02 </button>
 		<div class="panel">
-		 <p>Find out how to export shell funtions. Which command can be changed into a shell function that is called by the program itself ? </p>
+		 <p>Find out how to export shell funtions. Which command here can be changed into a shell function that is called by the program itself ? </p>
 		</div>
 
 		<button class="accordion">Hint03 </button>
@@ -64,17 +101,111 @@
 
 		<button class="accordion">Solution</button>
 		<div class="panel">
-		 <p>		
+		 <p>We can either change the environment variables or use shell funtions for this level. We will be using shell functions.<br>		
 			Create the function using <br>
 			<p class="code"> function /usr/bin/env() { getflag; } </p>
 			Now we will have to export the function and execute the program using 
-			<p class="code" >  export -f /usr/bin/env<br>./flag01  </p> 
+			<p class="code" >export -f /usr/bin/env<br>./flag01</p> 
 			Now he program runs the getflag for us. </p>	
 			<img src="images/nebula/1.png" height="auto" width="50%">	
 		</div>
 
 
+		<h3 class="heading"> level02 <a href="https://exploit.education/nebula/level-02/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level02 <br> Password : level02 </p>
+			<p>There is a vulnerability in the below program that allows arbitrary programs to be executed, can you find it?<br>Files for this level can be found in /home/flag02.</p>
 
+			<h4>Source Code</h4>
+			<div class=highlight>
+<pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>
+<span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdlib.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/types.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>envp)
+{
+	<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>buffer;
+
+	gid_t gid;
+	uid_t uid;
+
+	gid <span style=color:#f92672>=</span> getegid();
+	uid <span style=color:#f92672>=</span> geteuid();
+
+	setresgid(gid, gid, gid);
+	setresuid(uid, uid, uid);
+
+	buffer <span style=color:#f92672>=</span> NULL;
+
+	asprintf(<span style=color:#f92672>&amp;</span>buffer, <span style=color:#e6db74>&#34;/bin/echo %s is cool&#34;</span>, getenv(<span style=color:#e6db74>&#34;USER&#34;</span>));
+	printf(<span style=color:#e6db74>&#34;about to call system(</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>%s</span><span style=color:#ae81ff>\&#34;</span><span style=color:#e6db74>)</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, buffer);
+
+	system(buffer);
+}</code></pre></div>
+
+
+<button class="accordion">Explanation </button>
+<div class="panel">
+<pre >
+
+<p class="code">char *buffer;<br>gid = getegid();<br>uid = geteuid();</p>
+A character pointer is declared. (Can be used to store strings.)
+The group id , user id of the current user is copied into the gid and uid using the getegid() and geteuid() functions.
+(Get Effective group id and Get Effective User id functions)
+<p class="code">setresgid(gid, gid, gid);<br>setresuid(uid, uid, uid);</p>
+Then the setresgid, setresuid functions are used to set gid and uid of the current user.
+setresgid - set real, effective and saved user or group ID
+setresuid - set real, effective and saved user or user ID
+<p class="code">
+buffer = NULL;
+asprintf(&buffer, "/bin/echo %s is cool", getenv("USER"));
+printf("about to call system(\"%s\")\n", buffer);
+</p> 
+The character string is set to null and the string "USER is cool" is copied into the "buffer" string which is print out in the next command using the 
+printf() function. 
+Where "USER" is substituted by the environment variable USER.
+To see the USER environment variable, just run 
+<p class="code"> env | grep USER </p>
+Then, the system() function is used to execute the "buffer" string.
+<p class="code"> system(buffer); </p>
+i.e In this case it will execute "echo level02 is cool".
+
+<img src="images/nebula/2.png" height="auto" width="50%">	
+</pre>
+		</div>
+
+
+			
+			<button class="accordion">Hint01</button>
+			<div class="panel">
+			<p>Manipulate an environment variable</p>
+			</div>
+
+			<button class="accordion">Hint02</button>
+			<div class="panel">
+			<p>The program is executing a line of command for us. Think what all to add to the environment variable  so that we can execute what we want. </p>
+			</div>
+
+			<button class="accordion">Hint03</button>
+			<div class="panel">
+			<p>Change the environment varibale to include multiple commands.</p>
+			</div>
+
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>
+			We will be changing the environment variable USER which is used by the program . 
+			Multiple commands can be executed in one line using " ; ".<br>
+			Change the USER environment variable and execute the program by :
+			<p class="code">USER=hello\;getflag\;echo</p> <br>
+			<img src="images/nebula/2b.png" height="auto" width="50%"><br>	
+			The reason for such behaviour is the code that is executed by the c program using the system() fucntion. 
+			The code that is executed is :       
+			<p class="code">echo hello ;getflag ;echo is cool</p> <br> Allowing us to execute getflag.
+			</div>
 
 
 
