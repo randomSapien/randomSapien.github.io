@@ -241,6 +241,111 @@ i.e In this case it will execute "echo level02 is cool".
 
 
 
+<h3 class="heading"> level04 <a href="https://exploit.education/nebula/level-04/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level04 <br> Password : level04 </p>
+			<p>This level requires you to read the token file, but the code restricts the files that can be read. Find a way to bypass it :)<br>Files for this level can be found in /home/flag04.</p>
+			<h4>Source Code</h4>
+	<div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdlib.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sys/types.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;fcntl.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>argv, <span style=color:#66d9ef>char</span> <span style=color:#f92672>**</span>envp)
+{
+  <span style=color:#66d9ef>char</span> buf[<span style=color:#ae81ff>1024</span>];
+  <span style=color:#66d9ef>int</span> fd, rc;
+
+  <span style=color:#66d9ef>if</span>(argc <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) {
+      printf(<span style=color:#e6db74>&#34;%s [file to read]</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, argv[<span style=color:#ae81ff>0</span>]);
+      exit(EXIT_FAILURE);
+  }
+
+  <span style=color:#66d9ef>if</span>(strstr(argv[<span style=color:#ae81ff>1</span>], <span style=color:#e6db74>&#34;token&#34;</span>) <span style=color:#f92672>!=</span> NULL) {
+      printf(<span style=color:#e6db74>&#34;You may not access &#39;%s&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, argv[<span style=color:#ae81ff>1</span>]);
+      exit(EXIT_FAILURE);
+  }
+
+  fd <span style=color:#f92672>=</span> open(argv[<span style=color:#ae81ff>1</span>], O_RDONLY);
+  <span style=color:#66d9ef>if</span>(fd <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+      err(EXIT_FAILURE, <span style=color:#e6db74>&#34;Unable to open %s&#34;</span>, argv[<span style=color:#ae81ff>1</span>]);
+  }
+
+  rc <span style=color:#f92672>=</span> read(fd, buf, <span style=color:#66d9ef>sizeof</span>(buf));
+  
+  <span style=color:#66d9ef>if</span>(rc <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+      err(EXIT_FAILURE, <span style=color:#e6db74>&#34;Unable to read fd %d&#34;</span>, fd);
+  }
+
+  write(<span style=color:#ae81ff>1</span>, buf, rc);
+}</code></pre></div>
+
+<button class="accordion">Explanation </button>
+<div class="panel">
+
+<pre class="code">
+if(argc == 1) {
+      printf("%s [file to read]\n", argv[0]);
+      exit(EXIT_FAILURE);
+ }
+</pre>
+<p>Argc is the number of command line arguments used while executing the program including the name of the c program . So if there are no command line arguments, argc = 1.<br>
+The above condition checks whether there were any command line arguments while executing the program and if there are none, prints the correct way to use this executable.</p>
+
+<pre class="code">
+if(strstr(argv[1], "token") != NULL) {
+      printf("You may not access '%s'\n", argv[1]);
+      exit(EXIT_FAILURE);
+  }
+</pre>
+<p>argv is the list of command line arguments including the name of the program where argv[0] is the name of the program and the rest are the command line arguments.<br>
+Strstr() function checks for the occurance of a string within another string.<br><br>
+
+<img src="images/nebula/4.png" height="auto" width="50%"><br><br>
+
+If the command line argument specified (which is the file to be read according to this program) contains the string "token" in it, it denies access to the file as shown above.
+</p>
+
+<pre class="code">
+fd = open(argv[1], O_RDONLY);
+  if(fd == -1) {
+      err(EXIT_FAILURE, "Unable to open %s", argv[1]);
+  }
+
+  rc = read(fd, buf, sizeof(buf));
+  
+  if(rc == -1) {
+      err(EXIT_FAILURE, "Unable to read fd %d", fd);
+  }
+</pre>
+<p> The file specified is opened  and any error in opening or reading the file is checked for and results in program temination.
+</p>
+
+<pre class="code">
+write(1, buf, rc);
+</pre>
+<p> If no error are encountered, the file read is printed.
+</p>
+</div>
+
+			<button class="accordion">Hint</button>
+			<div class="panel">
+			<p>Think of other ways to point to a file. You know about it if you know linux basics.</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>We will be using links to refer to the token file.</p>
+			<img src="images/nebula/4b.png" height="auto" width="50%"><br>	
+			<p>To execute getflag, we need to switch to the flag04 account. So we can switch to flag04 using the content of the token file as password and execute getflag.</p>
+			<img src="images/nebula/4c.png" height="auto" width="50%"><br>
+			</div>
+
+
+
+
+
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
