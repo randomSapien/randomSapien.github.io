@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 
-	<title>Exploit Education Walkthrough</title>
+	<title></title>
 </head>
 <body>
 		<br><br>
@@ -15,13 +15,13 @@
 		exploitation.Hints will be provided in this walkthrough to give a chance for your wheels to spin.<br>
 		Try your best to solve each level on your own before looking at the solution. Goodluck!!! </p><br>
 
-		<h3 class="heading"> level00 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
+<h3 class="heading"> level00 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
 			<p> Username : level01 <br> Password : level01 </p>
 			<p>This level requires you to find a Set User ID program that will run as the “flag00” account. You could also find this by carefully looking in top level directories in / for suspicious looking directories.<br>Files for this level can be found in /home/flag00.</p>
 			
 			<button class="accordion">Hint01</button>
 			<div class="panel">
-			<p>Search for commands that can search for files based on its permissions and user.</p>
+			<p>You are looking for commands that can search for files based on its permissions and user.</p>
 			</div>
 
 			<button class="accordion">Hint02</button>
@@ -43,6 +43,8 @@
 			Now we execute the file </p> <p class="code">/bin/.../flag00</p>
 			<img src="images/nebula/0.png" height="auto" width="50%">		
 			</div>
+
+
 
 <h3 class="heading"> level01 <a href="https://exploit.education/nebula/level-01/" > <img src="../images/link.svg"> </a></h3>
 		<p> Username : level01 <br> Password : level01 </p>
@@ -206,6 +208,36 @@ i.e In this case it will execute "echo level02 is cool".
 			The code that is executed is :       
 			<p class="code">echo hello ;getflag ;echo is cool</p> <br> Allowing us to execute getflag.
 			</div>
+
+
+
+<h3 class="heading"> level03 <a href="https://exploit.education/nebula/level-03/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level03 <br> Password : level03 </p>
+			<p>Check the home directory of flag03 and take note of the files there. There is a crontab that is called every couple of minutes.<br>Files for this level can be found in /home/flag03.</p>
+			
+			<button class="accordion">Explanation</button>
+			<div class="panel"><br>
+			<img src="images/nebula/3a.png" height="auto" width="50%">	
+			<p>The writable.sh is executed every couple of minutes.<br>
+				<b>writable.sh</b><br>Every file in /home/flag03/writable.d, is executed and then removed.<br> <b>ulimit -t </b>: ulimit limits the resource usage of a process. The -t 5 sets the time limit to 5 seconds. 
+      <br><b>bash -x</b>: Prints the command before executing it. This mode is very useful when debuggging code. 
+			</p> 
+		</div>
+		
+			<button class="accordion">Hint</button>
+			<div class="panel">
+			<p>You just need to add a file to the writable.d folder</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>You need to add a file into writable.d directory that executes the getflag for us. And as proof that it was executed, redirect the output into the out.txt file in the parent directory.</p>
+			<img src="images/nebula/3b.png" height="auto" width="50%">
+			<p>A file called code.sh is created and "getflag > out.txt" is written into it.<br>When executed, the the ouput of the getflag is redirected to out.txt<br><br>
+			<img src="images/nebula/3c.png" height="auto" width="50%">
+			</div>
+
+
 
 
 
