@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+	<title>Natas Overview</title>
+
+</head>
+<body>
+<br><br>
+<a class="button bkbtn" href="../projects.html"> Back </a> 
+<h3>OVER THE WIRE- NATAS <a href="https://overthewire.org/wargames/natas/" > <img src="../images/link.svg"> </a></h3> 
+		<p>Just as they say on their webpage, Natas teaches the basics of serverside web-security.
+		This CTF is for begginers who are looking to sharpen their skills in web security.<br>Each level has the password for the next level and all the passwords are also stored in /etc/natas_wwbpass directory. 
+		Hints will be provided in this walkthrough to give a <br> chance for your wheels to spin.  
+		Try your best to solve each level on your own before looking at the solution. Goodluck!!! </p><br>
+
+<h3 class="heading"> Natas 0 <a href="http://natas0.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata0 <br> Password : natas0 </p>
+		<img src="images/natas 0.png" height="auto" width="60%">
+		<button class="accordion">Hint </button>
+		<div class="panel">
+		<p>Every page has souce code. Find out how to view it.</p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		<p>Right-click on the page and select View Page Source.</p>
+		<img src="natas0b.png" width="60%" height="auto" > 
+		<br><br><p>Password : gtVrDuiDfck831PqWsLEZy5gyDz1clto  </p>
+		</div>
+
+
+<h3 class="heading"> Natas 1 <a href="http://natas1.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+
+		<img src="images/natas1.png" width="60%" height="auto">
+		<button class="accordion">Hint </button>
+		<div class="panel">
+		 <p>There are other ways to view page source. Find out how.</p>
+		</div>
+
+		<button class="accordion">Solution 1</button>
+		<div class="panel">
+		 <p>You can either search type this in the address bar 
+		view-source:http://natas1.natas.labs.overthewire.org/ <br> Password : ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</p>	 
+		</div>
+
+		<button class="accordion">Solution 2</button>
+		<div class="panel">
+		 <p>Use Ctrl+U as a keyboard shortcut for the same.
+		 <br> Password : ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</p>
+		</div>
+
+<h3 class="heading"> Natas 2 <a href="http://natas2.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<img src="images/natas2.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>An image is displayed in the html page from a directory called files.</p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>Try to view all the contents of the files directory. Try editing the url.</p>
+		</div>
+
+		<button class="accordion">Solution </button>
+		<div class="panel">
+		<p>Search for http://natas2.natas.labs.overthewire.org/files and all the contents of the files directory is displayed. Now, all that we have to do is to select the users.txt and find the password. </p>
+		<img src="images/natas2b.png" width="60%" height="auto"><br><br>
+		Password : sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14 
+		</div>
+
+<h3 class="heading"> Natas 3 <a href="http://natas2.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<img src="images/natas3.png" width="60%" height="auto">
+		<p>Page Source </p>
+		<img src="images/natas3b.png" width="60%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>You are looking for a .txt file and its related to how search engines index web pages. </p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>Crawlers wont index this file.</p>
+		</div>
+
+		<button class="accordion">Solution </button>
+		<div class="panel">
+		<p>You have to navigate to the robots.txt file. <br>
+				Search http://natas3.natas.labs.overthewire.org/robots.txt<br><br>
+				<b>Robots.txt</b> <br>
+					User-agent: *<br>
+					Disallow: /s3cr3t/<br><br>
+					Which means every user-agen (aka browser in our case) is not allowed to index /s3cr3t.<br> 
+					So we got to search for /s3cr3t. <br>
+					Search http://natas3.natas.labs.overthewire.org/s3cr3t. Here you will find user.txt which contains the password. <br>
+					Password : Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</p>
+	
+		</div>		
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+<br><br><br>
+</body>
+</html>

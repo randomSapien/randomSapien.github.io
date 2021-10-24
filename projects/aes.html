@@ -189,7 +189,7 @@ body .markdown-body
 </style>
 <title>Advanced Encryption Standard</title>
 </head><body>
-<a class="button bkbtn" href="../Projects.html"> Back </a> 
+<a class="button bkbtn" href="../projects.html"> Back </a> 
 <br><br>
 <article class="markdown-body"><h1 id="advanced-encryption-standard-aes">Advanced Encryption Standard (AES)<a class="headerlink" href="#advanced-encryption-standard-aes" title="Permanent link"></a></h1>
 <p>The Advanced Encryption Standard (AES) is a specification for the encryption of electronic data established by the U.S National Institute of Standards and Technology (NIST) in 2001. AES is widely used today as it is a much stronger than DES and triple DES despite being harder to implement. </p>
@@ -210,7 +210,7 @@ The number of rounds depends on the key length as follows :</p>
 </ul>
 <h3 id="creation-of-round-keys">Creation of Round keys:<a class="headerlink" href="#creation-of-round-keys" title="Permanent link"></a></h3>
 <p>A Key Schedule algorithm is used to calculate all the round keys from the key. So the initial key is used to create many different round keys which will be used in the corresponding round of the encryption.</p>
-<p><img alt="" src="../images/aes_key_gen.png" /></p><br>
+<p><img alt="" src="images/aes_key_gen.png" /></p><br>
 <h2 id="encryption">Encryption<a class="headerlink" href="#encryption" title="Permanent link"></a></h2>
 <p>AES considers each block as a 16 byte (4 byte x 4 byte = 128 bits) grid in a column major arrangement.
 <div class="highlight"><pre>[ b0  | b4  | b8  | b12 ]
@@ -259,7 +259,7 @@ The number of rounds depends on the key length as follows :</p>
 </pre></div></p>
 <h3 id="add-round-keys">Add Round Keys:<a class="headerlink" href="#add-round-keys" title="Permanent link"></a></h3>
 <p>Now the resultant output of the previous stage is XOR-ed with the corresponding round key. Here, the 16 bytes is not considered as a grid but just as 128 bits of data.</p>
-<p><img alt="" src="../images/aes_full.png" title="Overview of AES" /></p>
+<p><img alt="" src="images/aes_full.png" title="Overview of AES" /></p>
 <p>After all these rounds 128 bits of encrypted data is given back as output. This process is repeated until all the data to be encrypted undergoes this process. </p>
 <h2 id="decryption">Decryption<a class="headerlink" href="#decryption" title="Permanent link"></a></h2>
 <p>Each stage in the encryption process has a corresponding process which when performed reverts the changes made. 
