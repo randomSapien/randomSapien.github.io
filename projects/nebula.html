@@ -15,14 +15,15 @@
 		exploitation.Hints will be provided in this walkthrough to give a chance for your wheels to spin.<br>
 		Try your best to solve each level on your own before looking at the solution. Goodluck!!! </p><br>
 
-		<h3 class="heading"> Natas 0 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
-			<p> Username : level01 <br> Password : level01 </p>
+		<h3 class="heading"> level00 <a href="https://exploit.education/nebula/level-00/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level00 <br> Password : level00 </p>
 			
-			<button class="accordion">Hint 01</button>
+			<button class="accordion">Hint01</button>
 			<div class="panel">
 			<p>Search for commands that can search for files based on its permissions and user.</p>
 			</div>
-			<button class="accordion">Hint 02</button>
+
+			<button class="accordion">Hint02</button>
 			<div class="panel">
 			<p>Use the find command.</p>
 			</div>
@@ -42,10 +43,39 @@
 			<img src="images/nebula/0.png" height="auto" width="50%">		
 			</div>
 
+<h3 class="heading"> level01 <a href="https://exploit.education/nebula/level-01/" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : level01 <br> Password : level01 </p>
+
+		
+		<button class="accordion">Hint01 </button>
+		<div class="panel">
+		 <p>We here can make use of shell functions.</p>
+		</div>
+
+		<button class="accordion">Hint02 </button>
+		<div class="panel">
+		 <p>Find out how to export shell funtions. Which command here can be changed into a shell function that is called by the program itself ? </p>
+		</div>
+
+		<button class="accordion">Hint03 </button>
+		<div class="panel">
+		 <p>You may need to use bash to solve this level.<br>Create a shell function called /usr/bin/env(). Use the function to run the getflag command.</p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		 <p>		
+			Create the function using <br>
+			<p class="code"> function /usr/bin/env() { getflag; } </p>
+			Now we will have to export the function and execute the program using 
+			<p class="code" >  export -f /usr/bin/env<br>./flag01  </p> 
+			Now he program runs the getflag for us. </p>	
+			<img src="images/nebula/1.png" height="auto" width="50%">	
+		</div>
 
 
 
-			
+
 
 
 <script>
