@@ -6,9 +6,17 @@ body{
   font-family: 'Anonymous Pro', monospace;  
   background-color: rgb(25,25,25);  
 }
+
 pre{
   font-size: 15px;
 }
+
+img{
+  padding-top: 20px; 
+  padding-bottom: 20px;
+}
+
+
 a:link{
   color: greenyellow;
   text-decoration: none;
