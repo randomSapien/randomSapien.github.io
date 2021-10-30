@@ -41,7 +41,7 @@
 			<b>2> /dev/null</b> redirects the error (stderr) to /dev/null, which is a file that accepts and discards anything and everything.(its morelike a small blackhole inside linux.)<br>
 			We get two files when we run the find command. <br>
 			Now we execute the file </p> <p class="code">/bin/.../flag00</p>
-			<img src="images/nebula/0.png" height="auto" width="50%">		
+			<img class="imag" src="images/nebula/0.png" height="auto" width="50%">		
 			</div>
 
 
@@ -109,7 +109,7 @@ Echo command is used to print "and now what?"
 			Now we will have to export the function and execute the program using 
 			<p class="code" >export -f /usr/bin/env<br>./flag01</p> 
 			Now he program runs the getflag for us. </p>	
-			<img src="images/nebula/1.png" height="auto" width="50%">	
+			<img class="imag" src="images/nebula/1.png" height="auto" width="50%">	
 		</div>
 
 
@@ -174,7 +174,7 @@ Then, the system() function is used to execute the "buffer" string.
 <p class="code"> system(buffer); </p>
 i.e In this case it will execute "echo level02 is cool".
 
-<img src="images/nebula/2.png" height="auto" width="50%">	
+<img class="imag" src="images/nebula/2.png" height="auto" width="50%">	
 </pre>
 		</div>
 
@@ -203,7 +203,7 @@ i.e In this case it will execute "echo level02 is cool".
 			Multiple commands can be executed in one line using " ; ".<br>
 			Change the USER environment variable and execute the program by :
 			<p class="code">USER=hello\;getflag\;echo</p> 
-			<img src="images/nebula/2b.png" height="auto" width="50%">	</p>
+			<img class="imag" src="images/nebula/2b.png" height="auto" width="50%">	</p>
 			The reason for such behaviour is the code that is executed by the c program using the system() fucntion. 
 			The code that is executed is :       
 			<p class="code">echo hello ;getflag ;echo is cool</p> <br> Allowing us to execute getflag.
@@ -217,7 +217,7 @@ i.e In this case it will execute "echo level02 is cool".
 			
 			<button class="accordion">Explanation</button>
 			<div class="panel">
-			<img src="images/nebula/3a.png" height="auto" width="50%">	
+			<img class="imag" src="images/nebula/3a.png" height="auto" width="50%">	
 			<p>The writable.sh is executed every couple of minutes.
 				<b>writable.sh</b><br>Every file in /home/flag03/writable.d, is executed and then removed.<br> <b>ulimit -t </b>: ulimit limits the resource usage of a process. The -t 5 sets the time limit to 5 seconds. 
       <br><b>bash -x</b>: Prints the command before executing it. This mode is very useful when debuggging code. 
@@ -232,10 +232,10 @@ i.e In this case it will execute "echo level02 is cool".
 			<button class="accordion">Solution</button>
 			<div class="panel">
 			<p>You need to add a file into writable.d directory that executes the getflag for us. And as proof that it was executed, redirect the output into the out.txt file in the parent directory.</p>
-			<img src="images/nebula/3b.png" height="auto" width="50%">
+			<img class="imag" src="images/nebula/3b.png" height="auto" width="50%">
 			<p>A file called code.sh is created and "getflag > out.txt" is written into it.
 			<br>When executed, the the ouput of the getflag is redirected to out.txt</p>
-			<img src="images/nebula/3c.png" height="auto" width="50%">
+			<img class="imag" src="images/nebula/3c.png" height="auto" width="50%">
 			</div>
 
 
@@ -303,7 +303,7 @@ if(strstr(argv[1], "token") != NULL) {
 <p>argv is the list of command line arguments including the name of the program where argv[0] is the name of the program and the rest are the command line arguments.<br>
 Strstr() function checks for the occurance of a string within another string.
 </p>
-<img src="images/nebula/4.png" height="auto" width="50%">
+<img class="imag" src="images/nebula/4.png" height="auto" width="50%">
 <p>
 If the command line argument specified (which is the file to be read according to this program) contains the string "token" in it, it denies access to the file as shown above.
 </p>
@@ -338,16 +338,16 @@ write(1, buf, rc);
 			<button class="accordion">Solution</button>
 			<div class="panel">
 			<p>We will be using links to refer to the token file.</p>
-			<img src="images/nebula/4b.png" height="auto" width="50%"><br>	
+			<img class="imag" src="images/nebula/4b.png" height="auto" width="50%"><br>	
 			<p>To execute getflag, we need to switch to the flag04 account. So we can switch to flag04 using the content of the token file as password and execute getflag.</p>
-			<img src="images/nebula/4c.png" height="auto" width="50%"><br>
+			<img class="imag" src="images/nebula/4c.png" height="auto" width="50%"><br>
 			</div>
 
 
 <h3 class="heading"> level05 <a href="https://exploit.education/nebula/level-05/" > <img src="../images/link.svg"> </a></h3>
 			<p> Username : level05 <br> Password : level05 </p>
 			<p>Check the flag05 home directory. You are looking for weak directory permissions. To do this level, log in as the level05 account with the password level05. Files for this level can be found in /home/flag05.</p>
-			<img src="images/nebula/5a.png" height="auto" width="50%">	
+			<img class="imag" src="images/nebula/5a.png" height="auto" width="50%">	
 
 			<button class="accordion">Hint01</button>
 			<div class="panel">
@@ -362,11 +362,11 @@ write(1, buf, rc);
 			<button class="accordion">Solution</button>
 			<div class="panel">
 			<p>Extract the file found in the .backup file using the tar command.</p>
-			<img src="images/nebula/5b.png" height="auto" width="50%">
+			<img class="imag" src="images/nebula/5b.png" height="auto" width="50%">
 			<p><b>-C </b>option of the tar command lets you extract the file to a specific directory. <br>
 			The ssh key (id_rsa) can be used to login to the flag05 account after which the getflag command can be executed.
 			I couldn't ssh to flag05 account so i had to use another machine to ssh into the account.</p>
-			<img src="images/nebula/5c.png" height="auto" width="70%">
+			<img class="imag" src="images/nebula/5c.png" height="auto" width="70%">
 			
 			</div>
 
@@ -389,13 +389,13 @@ write(1, buf, rc);
 			<button class="accordion">Solution</button>
 			<div class="panel">
 			<p>Since the credentials are from legacy unix system, the /etc/passwd contains the encrypted password of the flga06 user. So we copy the password of the flag06 user and store it in pass.tx using grep and tee commands.</p>
-			<img src="images/nebula/6a.png" height="auto" width="70%">
+			<img class="imag" src="images/nebula/6a.png" height="auto" width="70%">
 			<p><b>tee </b>command splits the output into two and reditects one into the file pass.txt and the other to stdout.<br>
 			The tee command is not at all a necessity, I just used it to show you its usage.
 			Then, we use john (johnny the ripper) to crack the password.</p>
-			<img src="images/nebula/6b.png" height="auto" width="70%">
+			<img class="imag" src="images/nebula/6b.png" height="auto" width="70%">
 			<p>Just to be clear, the password is "hello". The password is used to login to flag06 and execute the getflag.</p>
-			<img src="images/nebula/6c.png" height="auto" width="70%">
+			<img class="imag" src="images/nebula/6c.png" height="auto" width="70%">
 			</div>
 
 

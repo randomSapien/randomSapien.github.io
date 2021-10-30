@@ -11,10 +11,7 @@ pre{
   font-size: 15px;
 }
 
-img{
-  padding-top: 20px; 
-  padding-bottom: 20px;
-}
+
 
 
 a:link{
@@ -29,6 +26,11 @@ a:active {
   color: greenyellow;
   text-decoration: none;
 }
+.imag{
+  padding-top: 20px; 
+  padding-bottom: 20px;
+}
+
 .line-1{
     position: relative;
     top: 50%;  
