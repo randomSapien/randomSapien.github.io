@@ -198,6 +198,90 @@
 
 		</div>		
 
+
+
+<h3 class="heading"> Natas 8 <a href="http://natas8.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata8 <br></p>
+		<img src="images/natas8a.png" width="60%" height="auto">
+		<p>Page Source </p>
+		<img src="images/natas8.png" width="80%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>The secret is encoded multiple times and hardcoded into the source. You will have to decode it to get the password.</p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		<p>You can decode the secret using php -a command (-a : Interactive mode )<br> 
+				</p><br><br>
+				  <img src="images/natas8b.png" width="60%" height="auto"><br><br>
+				  <img src="images/natas8c.png" width="60%" height="auto"><br><br>
+				  Password : W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl </p>
+
+		</div>
+
+
+
+
+<h3 class="heading"> Natas 9 <a href="http://natas9.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata9 <br></p>
+		<img src="images/natas9b.png" width="60%" height="auto">
+		<p>Page Source </p>
+		<img src="images/natas9a.png" width="80%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>The user input is directly executed and output is passed to the webpage. </p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>You just need to input a command that prints the password of natas 10 from /etc/natas_webpapass_natas10. </p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		<p>You can view the natas 10 password using the command <br>
+		<p class="code"> grep '' /etc/natas_webpass/natas10;</p> 
+				</p>
+				Since grep is already a part of the command, we just need to input the rest of the command. <br><br>
+				<p class="code">  '' /etc/natas_webpass/natas10;</p> 
+				  <img src="images/natas9c.png" width="60%" height="auto"><br><br>
+				  Password : nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu </p>
+		</div>
+
+
+
+		<h3 class="heading"> Natas 10 <a href="http://natas10.natas.labs.overthewire.org" > <img src="../images/link.svg"> </a></h3>
+		<p> Username : nata10 <br></p>
+		<img src="images/natas10a.png" width="60%" height="auto">
+		<p>Page Source </p>
+		<img src="images/natas10b.png" width="80%" height="auto">
+		<button class="accordion">Hint 1 </button>
+		<div class="panel">
+		<p>The user input is filtered and executed and output is passed to the webpage. </p>
+		</div>
+
+		<button class="accordion">Hint 2 </button>
+		<div class="panel">
+		<p>You just need to input a command that prints the password of natas 11 from /etc/natas_webpapass_natas11. The command to be executed is similar to the previous level. </p>
+		</div>
+
+		<button class="accordion">Solution</button>
+		<div class="panel">
+		<p>You can view the natas 10 password using the command <br>
+		<p class="code"> grep '' /etc/natas_webpass/natas11 %3b </p> 
+				</p>
+				%3b is just url encoded ';'. Since grep is already a part of the command, we just need to input the rest of the command. <br><br>
+				<p class="code">  '' /etc/natas_webpass/natas11 %3b</p> 
+				  <img src="images/natas10c.png" width="60%" height="auto"><br><br>
+				  Password : U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK </p>
+		</div>
+
+
+
+
+
+
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
