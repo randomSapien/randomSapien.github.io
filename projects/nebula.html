@@ -343,7 +343,32 @@ write(1, buf, rc);
 			</div>
 
 
+<h3 class="heading"> level05 <a href="https://exploit.education/nebula/level-05/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level05 <br> Password : level05 </p>
+			<p>Check the flag05 home directory. You are looking for weak directory permissions. To do this level, log in as the level05 account with the password level05. Files for this level can be found in /home/flag05.<br><br>
+			<img src="images/nebula/5a.png" height="auto" width="50%">	<br>	</p>	
 
+			<button class="accordion">Hint01</button>
+			<div class="panel">
+			<p>Use the ssh key to login to the appropriate account.</p>
+			</div>
+
+			<button class="accordion">Hint02</button>
+			<div class="panel">
+			<p>Use the ssh -i command.</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>
+			Extract the file found in the .backup file using the tar command.<br><br>
+			<img src="images/nebula/5b.png" height="auto" width="50%"><br><br>
+			<b>-C </b>option of the tar command lets you extract the file to a specific directory. <br>
+			The ssh key (id_rsa) can be used to login to the flag05 account after which the getflag command can be executed.
+			I couldn't ssh to flag05 account so i had to use another machine to ssh into the account.  <br><br>
+			<img src="images/nebula/5c.png" height="auto" width="70%">
+			
+			</div>
 
 
 <script>
