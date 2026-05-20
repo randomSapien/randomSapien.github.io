@@ -1,33 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="utf-8">
-	<title>Projects</title>
-	<link rel="stylesheet" href="stylesheets/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects</title>
+
+    <link rel="stylesheet" href="stylesheets/style.css">
 </head>
+
 <body>
-	<a class="button bkbtn" href="index.html"> Home </a> 
-	<br><br>
-	<h2>Projects</h2>
-	<h3> UsbHound (Digital Forensics)</h3>
-	<p> Built using python 3, this tool gathers information of storage devices connected to your windows system. Windows Registry is used to gather all the information. 
-	<br><br>Take a Look : 
-	<a href="https://github.com/randomSapien/usbHound">
-	<img src="images/github.svg"> UsbHound</a></p>
-	<br>
-	<h3> PersistencePatrol (Threat Hunting)</h3>
-	<p> Built using python 3, this script is designed to detect malware trying to achieve persistence on your system.
-	<br><br>Take a Look : 
-	<a href="https://github.com/randomSapien/PersistencePatrol">
-	<img src="images/github.svg"> PersistencePatrol</a></p>
-	<br>
-	<h2> Writeups</h2>
-	<h3> OverTheWire - Natas Walkthrough</h3>
-	<a href="projects/natas.html"> Take a look </a>
-	<h3> Advanced Encryption Standard (AES) </h3>
-	<a href="projects/aes.html"> Take a look </a>
-	<h3> Exploit Education - Nebula Walkthrough</h3>
-	<a href="projects/nebula.html"> Take a look </a>
+
+    <a class="button bkbtn" href="index.html">Home</a>
+
+    <br><br>
+
+    <h1>Projects & Writeups</h1>
+
+    <p>
+        A collection of cybersecurity tools, automation projects, digital forensics utilities,
+        and offensive security writeups focused on practical security operations and research.
+    </p>
+
+    <br>
+
+    <h2>Projects</h2>
+
+    <div class="project">
+
+        <h3>usbHound (Digital Forensics)</h3>
+
+        <p>
+            Built using Python 3, usbHound is a digital forensics utility that gathers and analyzes
+            USB storage device artifacts from the Windows Registry to assist in forensic investigations
+            and device activity tracking.
+        </p>
+
+        <p>
+            <strong>Technologies:</strong> Python, Windows Registry, Digital Forensics
+        </p>
+
+        <a href="https://github.com/randomSapien/usbHound"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <img src="images/github.svg"
+                 alt="GitHub Icon"
+                 width="16">
+
+            View on GitHub
+        </a>
+
+    </div>
+
+    <br>
+
+    <div class="project">
+
+        <h3>PersistencePatrol (Threat Hunting)</h3>
+
+        <p>
+            Built using Python 3, PersistencePatrol is a threat hunting utility designed to detect
+            suspicious persistence mechanisms commonly used by malware to maintain long-term access
+            on Windows systems.
+        </p>
+
+        <p>
+            <strong>Technologies:</strong> Python, Threat Hunting, Windows Internals
+        </p>
+
+        <a href="https://github.com/randomSapien/PersistencePatrol"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <img src="images/github.svg"
+                 alt="GitHub Icon"
+                 width="16">
+
+            View on GitHub
+        </a>
+
+    </div>
+
+    <br><br>
+
+    <h2>Writeups</h2>
+
+    <div class="writeup">
+        <h3>OverTheWire - Natas Walkthrough</h3>
+        <a href="projects/natas.html">Read Writeup</a>
+    </div>
+
+    <br>
+
+    <div class="writeup">
+        <h3>Advanced Encryption Standard (AES)</h3>
+        <a href="projects/aes.html">Read Article</a>
+    </div>
+
+    <br>
+
+    <div class="writeup">
+        <h3>Exploit Education - Nebula Walkthrough</h3>
+        <a href="projects/nebula.html">Read Writeup</a>
+    </div>
 
 </body>
+
 </html>
